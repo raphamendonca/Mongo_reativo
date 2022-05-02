@@ -2,6 +2,7 @@ package com.example.Mongo_Escola.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
@@ -21,8 +22,13 @@ public class MongoConfig {
     @PostConstruct
     public void setMappingMongoConverter(){
         mappingMongoConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
-//        mongoTemplate.indexOps("Cusos").ensureIndex(new Index().on())
     }
 
+    @PostConstruct
+    public void setMongoTemplate(){
+        mongoTemplate.indexOps("Cursos")
+                .ensureIndex(
+                        new Index().on("codigo_curso", Sort.Direction.DESC)
+                );
+    }
 }

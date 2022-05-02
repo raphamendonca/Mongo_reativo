@@ -1,12 +1,15 @@
 package com.example.Mongo_Escola.repository;
 
-import com.example.Mongo_Escola.entity.CursoEntity;
+import com.example.Mongo_Escola.entity.AlunoEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface CursoRepository extends MongoRepository<CursoEntity, Long> {
+import java.util.List;
 
-    CursoEntity findByCodigo(Long codigo);
+@Repository
+public interface AlunoRepository extends MongoRepository<AlunoEntity, Long> {
+
+    List<AlunoEntity> findAllByCodigoCurso(Long codigoCurso);
+
 }
